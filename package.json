@@ -1,0 +1,25 @@
+{
+  "name": "bigwigs-voice-gcp",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A plugin for BigWigs that utilizes Google Cloud Platform's Text-To-Speech service to provide high-quality voice alerts for boss abilities and other in-game events",
+  "type": "module",
+  "keywords": [
+    "bigwigs",
+    "voice",
+    "gcp"
+  ],
+  "author": "Ivan Zakharchanka",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1",
+  "devDependencies": {
+    "@google-cloud/text-to-speech": "^5.4.0",
+    "@types/async": "^3.2.24",
+    "@types/node": "^22.5.2",
+    "@types/progress": "^2.0.7",
+    "async": "^3.2.6",
+    "progress": "^2.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
