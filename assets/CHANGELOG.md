@@ -1,7 +1,17 @@
 # BigWigs +Voice GCP
 
-Enhance your BigWigs experience with our extension, leveraging the cutting-edge capabilities of the Google Cloud Platform Text-To-Speech service.
-Receive studio-quality, remarkably lifelike voice notifications for boss abilities, greatly elevating your raiding immersion and awareness.
-Step into a richer and more intuitive raiding world, powered by state-of-the-art voice synthesis.
+
+A plugin for BigWigs that utilizes Google Cloud Platform's Text-To-Speech service to provide high-quality voice alerts for boss abilities and other in-game events.
+
+This can be particularly useful for players who prefer auditory cues over visual ones, or for those who want to stay focused on the game without constantly checking their screen.
+
+If you're looking for a way to enhance your World of Warcraft experience with voice-based alerts, BigWigs Voice GCP is definitely worth considering.
 
 [GitHub](https://github.com/zource-dev/bigwigs-voice-gcp)
+
+## [v11.0.1]
+
+### Added
+
+ - Support World of Warcraft The War Within
+ - Support World of Warcraft Cataclysm
