@@ -43,8 +43,8 @@ const encodingQueue = queue<EncodingQueueItem>(async ({ text, filename }) => {
 
 for await (const { file, spells } of parseDir(SOURCE)) {
   const progress = new ProgressBar(`${file} [:bar] :current/:total (:rate/s)  :percent :etas`, { total: spells.length });
-  for (const [name, phrase] of spells) {
-    const text = phrase.replace(/\:/g, '') + '!';
+  for (const [name, source] of spells) {
+    const text = source.replace(/\:/g, '').replace(/=.*/g, '') + '!';
     const filename = Path.join(TARGET, `${name}.ogg`);
     encodingQueue.push({ text, filename }, () => {
       progress.tick();
