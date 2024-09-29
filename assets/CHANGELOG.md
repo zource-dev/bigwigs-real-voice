@@ -1,4 +1,4 @@
-# BigWigs +Voice GCP
+# BigWigs Real Voice
 
 
 A plugin for BigWigs that utilizes Google Cloud Platform's Text-To-Speech service to provide high-quality voice alerts for boss abilities and other in-game events.
@@ -7,7 +7,13 @@ This can be particularly useful for players who prefer auditory cues over visual
 
 If you're looking for a way to enhance your World of Warcraft experience with voice-based alerts, BigWigs Voice GCP is definitely worth considering.
 
-[GitHub](https://github.com/zource-dev/bigwigs-voice-gcp)
+[GitHub](https://github.com/zource-dev/bigwigs-real-voice)
+
+## [v11.0.4]
+
+### Added
+
+ - Support for Male and Female versions
 
 ## [v11.0.1]
 

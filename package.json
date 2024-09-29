@@ -4,6 +4,10 @@
   "version": "0.0.1",
   "description": "A plugin for BigWigs that utilizes Google Cloud Platform's Text-To-Speech service to provide high-quality voice alerts for boss abilities and other in-game events",
   "type": "module",
+  "scripts": {
+    "ts": "node --loader ts-node/esm --no-warnings --experimental-specifier-resolution=node",
+    "build": "pnpm ts scripts/build.ts"
+  },
   "keywords": [
     "bigwigs",
     "voice",
