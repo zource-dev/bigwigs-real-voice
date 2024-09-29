@@ -1,4 +1,4 @@
-# BigWigs +Voice GCP
+# BigWigs Real Voice
 
 
 A plugin for BigWigs that utilizes Google Cloud Platform's Text-To-Speech service to provide high-quality voice alerts for boss abilities and other in-game events.
