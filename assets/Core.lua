@@ -14,6 +14,6 @@ local function handler(_, module, key, sound, isOnMe)
         addon:SendMessage("BigWigs_Sound", module, key, sound)
     end
 end
-BigWigsLoader.RegisterMessage(addon, name, handler)
+BigWigsLoader.RegisterMessage(addon, "BigWigs_Voice", handler)
 BigWigsAPI.RegisterVoicePack(name)
 
