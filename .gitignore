@@ -1,10 +1,4 @@
 build
 node_modules
 tmp
-BigWigs_VoiceGCP
-BigWigs_VoiceGCP.zip
-BigWigs_RealVoice_Male
-BigWigs_RealVoice_Male.zip
-BigWigs_RealVoice_Female
-BigWigs_RealVoice_Female.zip
 credentials.json

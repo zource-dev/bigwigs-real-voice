@@ -6,7 +6,7 @@ import { queue } from 'async';
 import { parseDir, fileNotExist } from './utils.js';
 import { textToFileGCP, VoiceType } from './gcp-tts.js';
 
-const VERSION = '11.0.2';
+const VERSION = '11.0.3';
 
 const INTERFACES = [
   11502,
@@ -19,10 +19,10 @@ const INTERFACES = [
 ];
 
 const ADDONS: Record<string, { voiceType: VoiceType }> = {
-  RealVoice_Male: {
+  Male: {
     voiceType: VoiceType.SQ,
   },
-  RealVoice_Female: {
+  Female: {
     voiceType: VoiceType.SO,
   },
 };
@@ -30,7 +30,7 @@ const ADDONS: Record<string, { voiceType: VoiceType }> = {
 const createManifest = (name: string) => `
 ## Interface: ${INTERFACES.join(', ')}
 
-## Title: BigWigs |cffff0000+|r|cffffffff${name}|r
+## Title: BigWigs |cffff0000+|r|cffffffffReal Voice ${name}|r
 ## Version: v${VERSION}
 ## Notes: A plugin for BigWigs that will play Text-To-Speech sounds for boss abilities.
 ## Notes-zhCN: BigWigs附加模块，为团队首领技能播放语音合成（TTS）提示。
@@ -67,8 +67,8 @@ export interface EncodingQueueItem {
 }
 
 for (const [name, { voiceType }] of Object.entries(ADDONS)) {
-  const fullName = `BigWigs_${name}`;
-  const buildDir = `build/${fullName}`;
+  const projectName = `BigWigs_RealVoice_${name}`;
+  const buildDir = `build/${projectName}`;
 
   const soundSource = `sounds/${voiceType}`;
   const soundsDir = `${buildDir}/Sounds`;
@@ -76,7 +76,7 @@ for (const [name, { voiceType }] of Object.entries(ADDONS)) {
   await rmrf(buildDir);
   await mkdir(buildDir, { recursive: true });
   const manifest = createManifest(name);
-  await writeFile(`${buildDir}/${fullName}.toc`, manifest);
+  await writeFile(`${buildDir}/${projectName}.toc`, manifest);
   const assets = await readdir('assets');
   await Promise.all(assets.map(asset => copyFile(`assets/${asset}`, `${buildDir}/${asset}`)));
 
@@ -111,6 +111,6 @@ for (const [name, { voiceType }] of Object.entries(ADDONS)) {
   }
   copyProgress.terminate();
 
-  console.log(`Packing ${fullName}`);
-  execSync(`zip -r ${fullName}.zip ${fullName}`, { cwd: 'build' });
+  console.log(`Packing ${projectName}`);
+  execSync(`zip -r ${projectName}.zip ${projectName}`, { cwd: 'build' });
 }
