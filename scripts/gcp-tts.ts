@@ -18,6 +18,11 @@ export enum VoiceType {
   N2G = 'N2G',
   SQ = 'SQ',
   SO = 'SO',
+  JD = 'JD',
+  JF = 'JF',
+  JO = 'JO',
+  CO = 'CO',
+  CD = 'CD',
 }
 
 export interface Voice {
@@ -72,6 +77,31 @@ const GCPVoice: Record<VoiceType, Voice> = {
     pitch: 0,
     speakingRate: 1,
   },
+  CD: {
+    name: 'en-US-Chirp-HD-D',
+    pitch: 0,
+    speakingRate: 1,
+  },
+  CO: {
+    name: 'en-US-Chirp-HD-O',
+    pitch: 0,
+    speakingRate: 1,
+  },
+  JD: {
+    name: 'en-US-Journey-D',
+    pitch: 20,
+    speakingRate: 1,
+  },
+  JF: {
+    name: 'en-US-Journey-F',
+    pitch: 0,
+    speakingRate: 1,
+  },
+  JO: {
+    name: 'en-US-Journey-O',
+    pitch: 0,
+    speakingRate: 1,
+  },
 };
 
 export const textToFileGCP = async (filename: string, text: string, voice: VoiceType = VoiceType.N2D) => {
@@ -95,8 +125,8 @@ export const textToFileGCP = async (filename: string, text: string, voice: Voice
     }
   };
   const [response] = await client.synthesizeSpeech(request);
-  await Fs.writeFile(`${filename}.tmp`, response.audioContent || '');
-  await exec(`rm -f ${filename} && ffmpeg -i ${filename}.tmp -c:a libvorbis -q:a 4 ${filename} && rm ${filename}.tmp`);
+  await Fs.writeFile(`${filename}.mp3`, response.audioContent || '');
+  await exec(`rm -f ${filename} && ffmpeg -i ${filename}.mp3 -c:a libvorbis -q:a 4 ${filename} && rm -f ${filename}.mp3`);
 };
 
 // https://www.ibm.com/demos/live/tts-demo/self-service/home

@@ -18,7 +18,13 @@ If you're looking for a way to enhance your World of Warcraft experience with vo
 - [💬 Issues](https://github.com/zource-dev/bigwigs-real-voice/issues)
 
 
-## [v11.0.4]
+## [v11.0.7]
+
+### Added
+
+ - Extra sound alerts
+
+## [v11.0.3]
 
 ### Added
 

@@ -9,13 +9,12 @@ import { textToFileGCP, VoiceType } from './gcp-tts.js';
 const VERSION = '11.0.3';
 
 const INTERFACES = [
-  11502,
+  11506,
   20504,
   30403,
-  40401,
+  40402,
   100207,
-  110000,
-  110002,
+  110007,
 ];
 
 const ADDONS: Record<string, { voiceType: VoiceType }> = {
