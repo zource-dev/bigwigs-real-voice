@@ -6,15 +6,14 @@ import { queue } from 'async';
 import { parseDir, fileNotExist } from './utils.js';
 import { textToFileGCP, VoiceType } from './gcp-tts.js';
 
-const VERSION = '11.0.3';
+const VERSION = '11.1.0';
 
 const INTERFACES = [
   11506,
   20504,
   30403,
   40402,
-  100207,
-  110007,
+  110100,
 ];
 
 const ADDONS: Record<string, { voiceType: VoiceType }> = {
