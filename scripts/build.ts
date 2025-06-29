@@ -6,15 +6,9 @@ import { queue } from 'async';
 import { parseDir, fileNotExist } from './utils.js';
 import { textToFileGCP, VoiceType } from './gcp-tts.js';
 
-const VERSION = '11.1.0';
+const VERSION = '11.1.7';
 
-const INTERFACES = [
-  11506,
-  20504,
-  30403,
-  40402,
-  110100,
-];
+const INTERFACES = [11507, 20504, 30403, 40402, 110107];
 
 const ADDONS: Record<string, { voiceType: VoiceType }> = {
   Male: {
@@ -53,7 +47,7 @@ const createManifest = (name: string) => `
 Core.lua
 `;
 
-const rmrf = (...paths: string[]) => Promise.all(paths.map(path => rm(path, { recursive: true, force: true })));
+const rmrf = (...paths: string[]) => Promise.all(paths.map((path) => rm(path, { recursive: true, force: true })));
 
 await rmrf('tmp');
 execSync('git clone https://github.com/BigWigsMods/BigWigs_Voice.git tmp/BigWigs_Voice');
@@ -61,7 +55,7 @@ execSync('git clone https://github.com/BigWigsMods/BigWigs_Voice.git tmp/BigWigs
 export interface EncodingQueueItem {
   text: string;
   filename: string;
-  voiceType: VoiceType,
+  voiceType: VoiceType;
 }
 
 for (const [name, { voiceType }] of Object.entries(ADDONS)) {
@@ -76,7 +70,7 @@ for (const [name, { voiceType }] of Object.entries(ADDONS)) {
   const manifest = createManifest(name);
   await writeFile(`${buildDir}/${projectName}.toc`, manifest);
   const assets = await readdir('assets');
-  await Promise.all(assets.map(asset => copyFile(`assets/${asset}`, `${buildDir}/${asset}`)));
+  await Promise.all(assets.map((asset) => copyFile(`assets/${asset}`, `${buildDir}/${asset}`)));
 
   const encodingQueue = queue<EncodingQueueItem>(async ({ voiceType, text, filename }) => {
     if (await fileNotExist(filename)) {
@@ -96,14 +90,14 @@ for (const [name, { voiceType }] of Object.entries(ADDONS)) {
       });
     }
     await encodingQueue.drain();
-    encodingProgress.terminate()
+    encodingProgress.terminate();
   }
 
   await rmrf(soundsDir);
   await mkdir(soundsDir, { recursive: true });
   const sounds = await readdir(soundSource);
   const copyProgress = new ProgressBar(`Copy ${voiceType} voice [:bar] :current/:total (:rate/s)  :percent :etas`, { total: sounds.length });
-  for(const soundFile of sounds) {
+  for (const soundFile of sounds) {
     await copyFile(`sounds/${voiceType}/${soundFile}`, `${soundsDir}/${soundFile}`);
     copyProgress.tick();
   }

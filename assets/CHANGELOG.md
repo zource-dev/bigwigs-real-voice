@@ -18,6 +18,12 @@ If you're looking for a way to enhance your World of Warcraft experience with vo
 - [💬 Issues](https://github.com/zource-dev/bigwigs-real-voice/issues)
 
 
+## [v11.1.7]
+
+### Added
+
+ - Scenarios sound alerts
+
 ## [v11.1.0]
 
 ### Added
