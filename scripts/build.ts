@@ -6,13 +6,13 @@ import { queue } from 'async';
 import { parseDir, fileNotExist } from './utils.js';
 import { textToFileGCP, VoiceType } from './gcp-tts.js';
 
-const VERSION = '11.1.7';
+const VERSION = '11.2.5';
 
-const INTERFACES = [11507, 20504, 30403, 40402, 110107];
+const INTERFACES = [11508, 20504, 30405, 40402, 50502, 110205];
 
 const ADDONS: Record<string, { voiceType: VoiceType }> = {
   Male: {
-    voiceType: VoiceType.SQ,
+    voiceType: VoiceType.C3A,
   },
   Female: {
     voiceType: VoiceType.SO,
@@ -76,7 +76,7 @@ for (const [name, { voiceType }] of Object.entries(ADDONS)) {
     if (await fileNotExist(filename)) {
       await textToFileGCP(filename, text, voiceType);
     }
-  }, 5);
+  }, 1);
 
   await mkdir(soundSource, { recursive: true });
 

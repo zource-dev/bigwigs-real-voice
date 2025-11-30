@@ -23,6 +23,8 @@ export enum VoiceType {
   JO = 'JO',
   CO = 'CO',
   CD = 'CD',
+  C3A = 'C3A',
+  C3E = 'C3E',
 }
 
 export interface Voice {
@@ -102,6 +104,17 @@ const GCPVoice: Record<VoiceType, Voice> = {
     pitch: 0,
     speakingRate: 1,
   },
+  C3A: {
+    name: 'en-US-Chirp3-HD-Algieba',
+    // en-US-Chirp3-HD-Sadachbia
+    pitch: 0,
+    speakingRate: 1.15,
+  },
+  C3E: {
+    name: 'en-US-Chirp3-HD-Erinome',
+    pitch: 0,
+    speakingRate: 1.15,
+  },
 };
 
 export const textToFileGCP = async (filename: string, text: string, voice: VoiceType = VoiceType.N2D) => {
@@ -115,14 +128,12 @@ export const textToFileGCP = async (filename: string, text: string, voice: Voice
       pitch: GCPVoice[voice].pitch,
       speakingRate: GCPVoice[voice].speakingRate,
       sampleRateHertz: 22050,
-      effectsProfileId: [
-        'headphone-class-device'
-      ],
+      effectsProfileId: ['headphone-class-device'],
     },
     voice: {
       languageCode: 'en-US',
-      name: GCPVoice[voice].name
-    }
+      name: GCPVoice[voice].name,
+    },
   };
   const [response] = await client.synthesizeSpeech(request);
   await Fs.writeFile(`${filename}.mp3`, response.audioContent || '');
@@ -136,10 +147,16 @@ const voice = 'en-US_MichaelV3Voice';
 
 export const ibmTTS = async (filename: string, text: string) => {
   const payload = {
-		sessionID,
-		ssmlText: `<prosody pitch="default" rate="-0%">${text}</prosody>`
-	};
-	await (await fetch('https://www.ibm.com/demos/live/tts-demo/api/tts/store', { method: 'post', headers: { accept: 'application/json, text/plain, */*', 'content-type': 'application/json;charset=UTF-8' }, body: JSON.stringify(payload) })).json();
-	const content = await (await fetch(`https://www.ibm.com/demos/live/tts-demo/api/tts/newSynthesize?voice=${voice}&id=${sessionID}`)).text();
+    sessionID,
+    ssmlText: `<prosody pitch="default" rate="-0%">${text}</prosody>`,
+  };
+  await (
+    await fetch('https://www.ibm.com/demos/live/tts-demo/api/tts/store', {
+      method: 'post',
+      headers: { accept: 'application/json, text/plain, */*', 'content-type': 'application/json;charset=UTF-8' },
+      body: JSON.stringify(payload),
+    })
+  ).json();
+  const content = await (await fetch(`https://www.ibm.com/demos/live/tts-demo/api/tts/newSynthesize?voice=${voice}&id=${sessionID}`)).text();
   await Fs.writeFile(filename, content);
-}
+};
